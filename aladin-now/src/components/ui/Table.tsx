@@ -9,7 +9,7 @@ import { ChevronUpIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 interface Column<T> {
   key: keyof T | string
   header: string
-  render?: (value: any, item: T) => React.ReactNode
+  render?: (value: unknown, item: T) => React.ReactNode
   sortable?: boolean
   className?: string
 }
@@ -25,7 +25,7 @@ interface TableProps<T> {
   loading?: boolean
 }
 
-export function Table<T extends Record<string, any>>({
+export function Table<T extends Record<string, unknown>>({
   data,
   columns,
   sortColumn,
@@ -51,6 +51,26 @@ export function Table<T extends Record<string, any>>({
     ) : (
       <ChevronDownIcon className="h-4 w-4 text-blue-600" />
     )
+  }
+
+  const renderCellValue = (column: Column<T>, item: T): React.ReactNode => {
+    if (column.render) {
+      return column.render(item[column.key], item)
+    }
+    
+    const value = item[column.key]
+    // Convert value to string if it's not a valid ReactNode
+    if (value === null || value === undefined) {
+      return ''
+    }
+    
+    // Check if value is a valid ReactNode
+    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+      return String(value)
+    }
+    
+    // For other types, convert to string
+    return String(value)
   }
 
   if (loading) {
@@ -113,9 +133,7 @@ export function Table<T extends Record<string, any>>({
                     column.className
                   )}
                 >
-                  {column.render
-                    ? column.render(item[column.key], item)
-                    : item[column.key]}
+                  {renderCellValue(column, item)}
                 </td>
               ))}
             </tr>

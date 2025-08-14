@@ -82,7 +82,7 @@ export const Footer: React.FC = () => {
               </Link>
             </div>
             <p className="text-gray-300 mb-6 max-w-md">
-              India's leading B2B marketplace platform connecting businesses across 
+              India&apos;s leading B2B marketplace platform connecting businesses across 
               Textile, Tiles & Marble, Oil Filling, and Beverages Filling industries.
             </p>
             

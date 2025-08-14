@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/Button'
 import { 
@@ -20,7 +20,7 @@ import {
 export const Header: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false)
-  const router = useRouter()
+  const pathname = usePathname()
   
   // Navigation items
   const navigationItems = [
@@ -56,7 +56,7 @@ export const Header: React.FC = () => {
   // Close mobile menu when route changes
   React.useEffect(() => {
     setIsMobileMenuOpen(false)
-  }, [router.asPath])
+  }, [pathname])
   
   return (
     <header className="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-50">
@@ -81,7 +81,7 @@ export const Header: React.FC = () => {
                 href={item.href}
                 className={cn(
                   'text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200',
-                  router.pathname === item.href
+                  pathname === item.href
                     ? 'text-blue-600 border-b-2 border-blue-600'
                     : ''
                 )}
@@ -191,7 +191,7 @@ export const Header: React.FC = () => {
                 href={item.href}
                 className={cn(
                   'block px-3 py-2 text-base font-medium rounded-md transition-colors duration-200',
-                  router.pathname === item.href
+                  pathname === item.href
                     ? 'text-blue-600 bg-blue-50'
                     : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                 )}

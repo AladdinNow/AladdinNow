@@ -31,12 +31,14 @@ interface FilterGroup {
   placeholder?: string
 }
 
+type FilterValue = string | number | string[] | { min?: number; max?: number } | undefined
+
 interface SearchFiltersProps {
   filters: FilterGroup[]
   searchQuery?: string
-  activeFilters: Record<string, any>
+  activeFilters: Record<string, FilterValue>
   onSearchChange?: (query: string) => void
-  onFilterChange?: (filterId: string, value: any) => void
+  onFilterChange?: (filterId: string, value: FilterValue) => void
   onClearFilters?: () => void
   onApplyFilters?: () => void
   className?: string
@@ -59,7 +61,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
   const [isExpanded, setIsExpanded] = useState(false)
   const [localFilters, setLocalFilters] = useState(activeFilters)
 
-  const handleFilterChange = (filterId: string, value: any) => {
+  const handleFilterChange = (filterId: string, value: FilterValue) => {
     setLocalFilters(prev => ({
       ...prev,
       [filterId]: value
@@ -91,15 +93,15 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
         return (
           <Select
             label={filter.label}
-            value={localFilters[filter.id] || ''}
-            onChange={(value) => handleFilterChange(filter.id, value)}
+            value={(localFilters[filter.id] as string) || ''}
+            onChange={(e) => handleFilterChange(filter.id, e.target.value)}
             options={filter.options || []}
             placeholder={filter.placeholder}
           />
         )
       
       case 'multiselect':
-        const selectedValues = localFilters[filter.id] || []
+        const selectedValues = (localFilters[filter.id] as string[]) || []
         return (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -115,7 +117,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
                       if (e.target.checked) {
                         handleFilterChange(filter.id, [...selectedValues, option.value])
                       } else {
-                        handleFilterChange(filter.id, selectedValues.filter(v => v !== option.value))
+                        handleFilterChange(filter.id, selectedValues.filter((v: string) => v !== option.value))
                       }
                     }}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
@@ -133,7 +135,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
         )
       
       case 'range':
-        const rangeValue = localFilters[filter.id] || { min: filter.min, max: filter.max }
+        const rangeValue = (localFilters[filter.id] as { min?: number; max?: number }) || { min: filter.min, max: filter.max }
         return (
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -144,7 +146,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
                 type="number"
                 placeholder="Min"
                 value={rangeValue.min || ''}
-                onChange={(e) => handleFilterChange(filter.id, { ...rangeValue, min: e.target.value })}
+                onChange={(e) => handleFilterChange(filter.id, { ...rangeValue, min: Number(e.target.value) })}
                 min={filter.min}
                 max={filter.max}
                 step={filter.step}
@@ -154,7 +156,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
                 type="number"
                 placeholder="Max"
                 value={rangeValue.max || ''}
-                onChange={(e) => handleFilterChange(filter.id, { ...rangeValue, max: e.target.value })}
+                onChange={(e) => handleFilterChange(filter.id, { ...rangeValue, max: Number(e.target.value) })}
                 min={filter.min}
                 max={filter.max}
                 step={filter.step}
@@ -175,7 +177,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
                 <label key={option.value} className="flex items-center">
                   <input
                     type="checkbox"
-                    checked={localFilters[filter.id] === option.value}
+                    checked={(localFilters[filter.id] as string) === option.value}
                     onChange={(e) => {
                       if (e.target.checked) {
                         handleFilterChange(filter.id, option.value)
@@ -203,7 +205,7 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
   }
 
   const renderActiveFilterTags = () => {
-    const tags = []
+    const tags: Array<{ id: string; label: string; value: string | number; filterId: string }> = []
     
     Object.entries(activeFilters).forEach(([filterId, value]) => {
       if (!value || (Array.isArray(value) && value.length === 0)) return
@@ -223,21 +225,21 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
             })
           }
         })
-      } else if (typeof value === 'object' && value.min !== undefined && value.max !== undefined) {
+      } else if (typeof value === 'object' && value !== null && 'min' in value && 'max' in value) {
         tags.push({
           id: filterId,
           label: `${filter.label}: ${value.min} - ${value.max}`,
           filterId,
-          value
+          value: `${value.min}-${value.max}`
         })
-      } else {
+      } else if (typeof value === 'string' || typeof value === 'number') {
         const option = filter.options?.find(opt => opt.value === value)
         if (option) {
           tags.push({
             id: filterId,
             label: `${filter.label}: ${option.label}`,
             filterId,
-            value
+            value: value
           })
         }
       }
@@ -312,8 +314,9 @@ export const SearchFilters: React.FC<SearchFiltersProps> = ({
                 <span>{tag.label}</span>
                 <button
                   onClick={() => {
-                    if (Array.isArray(activeFilters[tag.filterId])) {
-                      const newValue = activeFilters[tag.filterId].filter(v => v !== tag.value)
+                    const filterValue = activeFilters[tag.filterId]
+                    if (Array.isArray(filterValue)) {
+                      const newValue = filterValue.filter(v => v !== tag.value)
                       onFilterChange?.(tag.filterId, newValue.length > 0 ? newValue : undefined)
                     } else {
                       onFilterChange?.(tag.filterId, undefined)

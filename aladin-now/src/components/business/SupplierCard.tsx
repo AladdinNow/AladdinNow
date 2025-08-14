@@ -5,10 +5,7 @@ import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/Badge'
 import { Button } from '@/components/ui/Button'
 import { 
-  BuildingOfficeIcon,
   MapPinIcon,
-  PhoneIcon,
-  EnvelopeIcon,
   StarIcon,
   CheckBadgeIcon
 } from '@heroicons/react/24/outline'

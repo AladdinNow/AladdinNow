@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react'
 import { Layout } from '@/components/layout/Layout'
 import { Card, CardBody } from '@/components/ui/Card'
@@ -149,7 +151,7 @@ export default function ContactPage() {
               Contact Us
             </h1>
             <p className="text-gray-600">
-              Get in touch with our team. We're here to help you succeed.
+              Get in touch with our team. We&apos;re here to help you succeed.
             </p>
           </div>
         </div>
@@ -163,7 +165,7 @@ export default function ContactPage() {
                   Send us a Message
                 </h2>
                 <p className="text-gray-600">
-                  Have a question or need assistance? Fill out the form below and we'll get back to you within 24 hours.
+                  Have a question or need assistance? Fill out the form below and we&apos;ll get back to you within 24 hours.
                 </p>
               </div>
               
@@ -283,7 +285,7 @@ export default function ContactPage() {
                   Get in Touch
                 </h2>
                 <p className="text-gray-600">
-                  We're here to help you succeed. Reach out to us through any of these channels.
+                  We&apos;re here to help you succeed. Reach out to us through any of these channels.
                 </p>
               </div>
               
@@ -381,7 +383,7 @@ export default function ContactPage() {
                     Can I schedule a demo of your platform?
                   </h3>
                   <p className="text-gray-600 text-sm">
-                    Absolutely! We'd be happy to show you around. Contact our sales team to schedule a personalized demo.
+                    Absolutely! We&apos;d be happy to show you around. Contact our sales team to schedule a personalized demo.
                   </p>
                 </CardBody>
               </Card>
@@ -392,7 +394,7 @@ export default function ContactPage() {
                     Do you offer support in regional languages?
                   </h3>
                   <p className="text-gray-600 text-sm">
-                    Yes, we provide support in Hindi and English. We're working on adding more regional languages.
+                    Yes, we provide support in Hindi and English. We&apos;re working on adding more regional languages.
                   </p>
                 </CardBody>
               </Card>

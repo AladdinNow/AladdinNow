@@ -1,8 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Button } from '@/components/ui/Button'
-import { Badge } from '@/components/ui/Badge'
 import { 
   ArrowRightIcon,
   SparklesIcon,
@@ -195,10 +193,10 @@ export const IndustryShowcase: React.FC = () => {
         <div className="text-center">
           <div className="bg-white rounded-2xl p-8 shadow-lg max-w-4xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-              Can't Find Your Industry?
+              Can&apos;t Find Your Industry?
             </h3>
             <p className="text-gray-600 mb-6">
-              While we focus on these four industries, we're constantly expanding. 
+              While we focus on these four industries, we&apos;re constantly expanding. 
               Contact us to discuss how we can help with your specific sourcing needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

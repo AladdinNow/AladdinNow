@@ -1,6 +1,8 @@
+"use client"
+
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
@@ -455,7 +457,7 @@ export const RegistrationForm: React.FC = () => {
             <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
               <p className="text-sm text-blue-800">
                 <strong>Note:</strong> Your business will be reviewed and verified within 24-48 hours. 
-                You'll receive an email notification once your account is approved.
+                You&apos;ll receive an email notification once your account is approved.
               </p>
             </div>
           </div>

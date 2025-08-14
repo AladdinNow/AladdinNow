@@ -1,6 +1,8 @@
+"use client"
+
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Card, CardHeader, CardBody, CardFooter } from '@/components/ui/Card'
@@ -178,7 +180,7 @@ export const LoginForm: React.FC = () => {
           <CardFooter>
             <div className="text-center w-full">
               <p className="text-sm text-gray-600">
-                Don't have an account?{' '}
+                Don&apos;t have an account?{' '}
                 <Link
                   href="/register"
                   className="font-medium text-blue-600 hover:text-blue-500 transition-colors duration-200"

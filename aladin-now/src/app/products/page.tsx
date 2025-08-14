@@ -1,14 +1,13 @@
 import React from 'react'
 import { Layout } from '@/components/layout/Layout'
-import { Card, CardHeader, CardBody } from '@/components/ui/Card'
+import { Card, CardBody } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
-import { Input } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
 import { 
   MagnifyingGlassIcon, 
   FunnelIcon,
-  ViewGridIcon,
-  ViewListIcon
+  Squares2X2Icon,
+  Bars3Icon
 } from '@heroicons/react/24/outline'
 
 /**
@@ -168,10 +167,10 @@ export default function ProductsPage() {
             <div className="flex items-center space-x-2">
               <span className="text-sm text-gray-600">View:</span>
               <Button variant="ghost" size="sm" className="p-2">
-                <ViewGridIcon className="h-5 w-5" />
+                <Squares2X2Icon className="h-5 w-5" />
               </Button>
               <Button variant="ghost" size="sm" className="p-2">
-                <ViewListIcon className="h-5 w-5" />
+                <Bars3Icon className="h-5 w-5" />
               </Button>
             </div>
           </div>

@@ -49,7 +49,7 @@ export const Hero: React.FC = () => {
         <div className="text-center">
           {/* Main Headline */}
           <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-            India's Premier{' '}
+            India&apos;s Premier{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
               B2B Marketplace
             </span>

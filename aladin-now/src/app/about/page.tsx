@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { Layout } from '@/components/layout/Layout'
 import { Card, CardBody } from '@/components/ui/Card'
@@ -82,10 +84,10 @@ export default function AboutPage() {
                 About AladdinNow
               </h1>
               <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-                India's Premier B2B Marketplace Platform
+                India&apos;s Premier B2B Marketplace Platform
               </p>
               <p className="text-lg max-w-2xl mx-auto text-blue-100">
-                We're on a mission to transform how businesses connect, trade, and grow in India's dynamic manufacturing landscape.
+                We&apos;re on a mission to transform how businesses connect, trade, and grow in India&apos;s dynamic manufacturing landscape.
               </p>
             </div>
           </div>
@@ -144,7 +146,7 @@ export default function AboutPage() {
                 Our Vision
               </h2>
               <p className="text-lg text-gray-700 mb-6">
-                To become India's most trusted and comprehensive B2B marketplace, driving digital transformation across manufacturing and supply chain industries.
+                To become India&apos;s most trusted and comprehensive B2B marketplace, driving digital transformation across manufacturing and supply chain industries.
               </p>
               <p className="text-gray-600 mb-6">
                 We envision a future where Indian businesses can compete globally with access to world-class suppliers, innovative technologies, and seamless trade experiences.
@@ -239,11 +241,9 @@ export default function AboutPage() {
               {team.map((member, index) => (
                 <Card key={index} className="text-center">
                   <CardBody>
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
-                    />
+                    <div className="w-32 h-32 rounded-full mx-auto mb-4 bg-gray-200 flex items-center justify-center">
+                      <span className="text-4xl">👤</span>
+                    </div>
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
                       {member.name}
                     </h3>

@@ -1,14 +1,13 @@
+"use client"
+
 import React, { useState } from 'react'
 import { Layout } from '@/components/layout/Layout'
-import { Card, CardHeader, CardBody, CardFooter } from '@/components/ui/Card'
+import { Card, CardBody } from '@/components/ui/Card'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { Select } from '@/components/ui/Select'
 import { 
-  PlusIcon,
   MagnifyingGlassIcon,
-  FunnelIcon,
-  ClockIcon,
   UserIcon,
   BuildingOfficeIcon
 } from '@heroicons/react/24/outline'
