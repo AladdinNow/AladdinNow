@@ -13,11 +13,17 @@ const eslintConfig = [
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     ignores: [
-      "**/src/generated/**/*", // Ignore all generated Prisma files with more explicit pattern
+      // Ignore all generated Prisma files and node_modules
       "**/node_modules/**/*",
+      "**/.prisma/**/*",
+      "**/src/generated/**/*",
       "**/.next/**/*",
       "**/dist/**/*",
-      "**/build/**/*"
+      "**/build/**/*",
+      // Additional patterns that might be used by Vercel
+      "**/*.generated.*",
+      "**/*.prisma.*",
+      "**/generated/**/*"
     ]
   },
   {
