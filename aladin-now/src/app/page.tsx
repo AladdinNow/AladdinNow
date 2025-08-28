@@ -1,5 +1,5 @@
 import React from 'react'
-import Hero from '@/components/home/Hero'
+// import Hero from '@/components/home/Hero'
 import CategoryBar from '@/components/home/CategoryBar'
 import ProductCategories from '@/components/home/ProductCategories'
 import FeatureProducts from '@/components/home/FeatureProducts'
@@ -14,7 +14,7 @@ export default function HomePage() {
     <div className="min-h-screen bg-gray-50">
       <CategoryBar />
       <ProductCategories />
-      <Hero />
+      {/* <Hero /> */}
       <FeatureProducts />
     </div>
   )
