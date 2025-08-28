@@ -10,7 +10,7 @@ import IndustryShowcase from '@/components/home/IndustryShowcase'
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-      <Hero />
+      {/* <Hero /> */}
       <Features />
       <IndustryShowcase />
     </div>
