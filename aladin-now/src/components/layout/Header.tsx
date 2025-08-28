@@ -10,7 +10,8 @@ import {
   XMarkIcon, 
   UserCircleIcon,
   BuildingOfficeIcon,
-  MagnifyingGlassIcon
+  MagnifyingGlassIcon,
+  QuestionMarkCircleIcon
 } from '@heroicons/react/24/outline'
 
 /**
@@ -66,33 +67,15 @@ export const Header: React.FC = () => {
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
               <div className="flex-shrink-0">
-                <span className="text-2xl font-bold text-blue-600">
-                  AladdinNow
+                <span className="text-2xl font-bold text-gray-900">
+                  Aladdin Now
                 </span>
               </div>
             </Link>
           </div>
           
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-8">
-            {navigationItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  'text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-colors duration-200',
-                  pathname === item.href
-                    ? 'text-blue-600 border-b-2 border-blue-600'
-                    : ''
-                )}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
-          
-          {/* Search Bar */}
-          <div className="hidden lg:flex flex-1 max-w-lg mx-8">
+          {/* Centered Search Bar */}
+          <div className="flex-1 max-w-lg mx-8">
             <div className="relative w-full">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
@@ -106,50 +89,26 @@ export const Header: React.FC = () => {
           </div>
           
           {/* Right side actions */}
-          <div className="flex items-center space-x-4">
-            {/* User menu or auth buttons */}
-            {isAuthenticated ? (
-              <div className="relative">
-                <button
-                  onClick={toggleUserMenu}
-                  className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 transition-colors duration-200"
-                >
-                  <UserCircleIcon className="h-8 w-8" />
-                  <span className="hidden sm:block text-sm font-medium">
-                    John Doe
-                  </span>
-                </button>
-                
-                {/* User dropdown menu */}
-                {isUserMenuOpen && (
-                  <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 py-1 z-50">
-                    {userMenuItems.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors duration-200"
-                      >
-                        <item.icon className="h-4 w-4 mr-3" />
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3">
-                <Link href="/login">
-                  <Button variant="ghost" size="sm">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link href="/register">
-                  <Button variant="primary" size="sm">
-                    Get Started
-                  </Button>
-                </Link>
-              </div>
-            )}
+          <div className="flex items-center space-x-3">
+            {/* Action buttons */}
+            <Link href="/register">
+              <Button variant="outline" size="sm" className="flex items-center space-x-2">
+                <BuildingOfficeIcon className="h-4 w-4" />
+                <span>Register</span>
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button variant="outline" size="sm" className="flex items-center space-x-2">
+                <UserCircleIcon className="h-4 w-4" />
+                <span>Log in</span>
+              </Button>
+            </Link>
+            <Link href="/help">
+              <Button variant="outline" size="sm" className="flex items-center space-x-2">
+                <QuestionMarkCircleIcon className="h-4 w-4" />
+                <span>Help Center</span>
+              </Button>
+            </Link>
             
             {/* Mobile menu button */}
             <button

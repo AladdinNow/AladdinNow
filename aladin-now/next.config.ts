@@ -11,6 +11,15 @@ const nextConfig: NextConfig = {
     // Temporarily disable TypeScript checking during builds to ensure deployment succeeds
     ignoreBuildErrors: true,
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+      },
+    ],
+    domains: ['via.placeholder.com'],
+  },
 };
 
 export default nextConfig;

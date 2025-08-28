@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import { cn } from '@/lib/utils'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline'
