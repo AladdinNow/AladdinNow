@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json.schemastore.org/package.json",
+  "name": "http-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codermanoj2023/10-nodejs-typescript-project-with-tsup.git"
+  },
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
+    "dev": "tsup src/index.ts --format cjs --watch --onSuccess \"node dist/index.js\"",
+    "lint": "tsc --noEmit && TIMING=1 eslint \"src/**/*.ts*\"",
+    "start": "node dist/index.js",
+    "test": "jest --detectOpenHandles"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2",
+    "tsup": "^8.5.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.13.10",
+    "typescript": "^5.8.3"
+  }
+}
