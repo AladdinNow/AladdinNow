@@ -1,13 +1,8 @@
 {
-  "$schema": "https://json.schemastore.org/package.json",
-  "name": "http-server",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/codermanoj2023/10-nodejs-typescript-project-with-tsup.git"
-  },
   "scripts": {
     "build": "tsup src/index.ts --format cjs",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
@@ -20,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^17.2.1",
     "express": "^4.21.2",
     "tsup": "^8.5.0"
   },
